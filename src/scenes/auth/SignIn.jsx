@@ -18,6 +18,7 @@ import ForgotPassword from './components/ForgotPassword';
 // import ColorModeSelect from '../shared-theme/ColorModeSelect';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './components/CustomIcons';
 import { AuthContext } from '../../Store/AuthContext';
+import { loadUsers } from '../../data/storage';
 
 const Card = styled(MuiCard)(({ theme }) => ({
     display: 'flex',
@@ -83,13 +84,20 @@ export default function SignIn(props) {
             event.preventDefault();
             return;
         }
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+        const userdata = new FormData(event.currentTarget);
 
-        setLoggedIn(true);
+        loadUsers().then((data) => {
+            if (data.find(user => user.email ===userdata.get('email') && user.password === userdata.get('password'))) {
+                setLoggedIn(true);
+            }else{
+                alert('User not found');
+            }
+        })
+        // console.log({
+        //     email: data.get('email'),
+        //     password: data.get('password'),
+        // });
+
     };
 
     const validateInputs = () => {

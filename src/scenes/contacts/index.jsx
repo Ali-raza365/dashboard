@@ -34,7 +34,7 @@ const CustomToolbar = ({ searchQuery, setSearchQuery, deleteSelectedRow, isDelet
 const Contacts = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const [users, setUsers] = useState(Users);
+  const [users, setUsers] = useState([]);
    
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedRow, setSelectedRow] = useState(null); // Change to hold a single selected row
@@ -58,8 +58,8 @@ const Contacts = () => {
       loadUsers().then((data) => {
         setUsers(data);
         if (!data?.length) {
-          saveUsers(mockDataContacts)
-          setUsers(mockDataContacts);
+          saveUsers(Users)
+          setUsers(Users);
         }
       });
     }, [])

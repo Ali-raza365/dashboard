@@ -4,15 +4,24 @@ import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import { loadUsers, saveUsers } from "../../data/storage";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
+  const navigate = useNavigate(); // Add this line
 
   const handleFormSubmit = (values) => {
     console.log(values);
     loadUsers().then((data) => {
-       saveUsers([...data, values]);
+       saveUsers([...data, {...values,id:Date.now()}]);
+
     })
+    
+    setTimeout(() => {
+       navigate("/users");
+    },1000)
+          // Navigate to users after saving
+
     // navigator('/users');
   };
 
@@ -149,6 +158,9 @@ const initialValues = {
   firstName: "",
   lastName: "",
   email: "",
+  username: "",
+  password: "",
+  comments: "",
   contact: "",
   address1: "",
   address2: "",
