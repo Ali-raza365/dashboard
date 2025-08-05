@@ -5,7 +5,7 @@ import { mockDataContacts } from "../../data/mockData";
 import Users from "../../data/Data.json";
 import Header from "../../components/Header";
 import { useTheme } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 import IconButton from '@mui/material/IconButton';
@@ -13,6 +13,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from '@mui/material/TextField';
 import Footer from "../../components/Footer";
+import { loadUsers, saveUsers } from "../../data/storage";
 
 const CustomToolbar = ({ searchQuery, setSearchQuery, deleteSelectedRow, isDeleteDisabled }) => (
   <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px',  }}>
@@ -33,12 +34,10 @@ const CustomToolbar = ({ searchQuery, setSearchQuery, deleteSelectedRow, isDelet
 const Contacts = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-
   const [users, setUsers] = useState(Users);
    
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedRow, setSelectedRow] = useState(null); // Change to hold a single selected row
-console.log(selectedRow)
   const handleRowSelection = (selectionModel) => {
     // Allow only one row to be selected
     const selectedId = selectionModel.length > 0 ? selectionModel[0] : null;
@@ -54,18 +53,37 @@ console.log(selectedRow)
     }
   };
 
+
+   useEffect(() => {
+      loadUsers().then((data) => {
+        setUsers(data);
+        if (!data?.length) {
+          saveUsers(mockDataContacts)
+          setUsers(mockDataContacts);
+        }
+      });
+    }, [])
+  
+    useEffect(() => {
+      if (users?.length) {
+        saveUsers(users);
+      }
+    }, [users]);
+
   // Filter users based on the search query
   const filteredUsers = users.filter((user) => {
     return (
-      user.first_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      user.last_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      user.Username.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchQuery.toLowerCase())
+      user.first_name?.toLowerCase().includes(searchQuery?.toLowerCase()) ||
+      user.last_name?.toLowerCase().includes(searchQuery?.toLowerCase()) ||
+      user.Username?.toLowerCase().includes(searchQuery?.toLowerCase()) ||
+      user.email?.toLowerCase().includes(searchQuery?.toLowerCase())
     );
   });
+
+
   const columns = [
-    { field: "first_name", headerName: "First Name", flex: 1 },
-    { field: "last_name", headerName: "Last Name", flex: 1 },
+    { field: "firstName", headerName: "First Name", flex: 1 },
+    { field: "lastName", headerName: "Last Name", flex: 1 },
     { field: "Username", headerName: "Username", flex: 1 },
     {
       field: "email",
