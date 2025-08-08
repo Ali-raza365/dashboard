@@ -55,7 +55,7 @@ const CustomBox = () => {
       <Paper>
         <List>
           {[1, 2, 3].map((item, index) => (
-            <ListItem button key={index} sx={{ padding: 1, backgroundColor: colors.primary[400] }}>
+            <ListItem button key={index} sx={{ padding: 1, backgroundColor: colors.background[400] }}>
               <ListItemIcon sx={{ color: 'white' }}>
                 <AccountBoxIcon />
               </ListItemIcon>
@@ -78,7 +78,7 @@ const Sidebar = () => {
     <Box
       sx={{
         "& .pro-sidebar-inner": {
-          background: `${colors.primary[400]} !important`,
+          background: `${colors.background[400]} !important`,
           overflow: "visible",
         },
         "& .pro-sidebar-layout": {
@@ -91,10 +91,10 @@ const Sidebar = () => {
           padding: "5px 35px 5px 20px !important",
         },
         "& .pro-inner-item:hover": {
-          color: "#868dfb !important",
+          color: `${colors.primary} !important`,
         },
         "& .pro-menu-item.active": {
-          color: "#6870fa !important",
+          color: `${colors.primary} !important`,
         },
       }}
     >

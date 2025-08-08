@@ -11,6 +11,7 @@ import { ColorModeContext, useMode } from "./theme";
 import Inventory from "./scenes/inventory";
 import SignIn from "./scenes/auth/SignIn";
 import { AuthContext } from "./Store/AuthContext";
+import Settings from "./scenes/settings";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -41,6 +42,7 @@ function App() {
               <Route path="/SignIn" element={<SignIn />} />
               <Route path="/users" element={<Contacts />} />
               <Route path="/inventory" element={<Inventory />} />
+              <Route path="/settings" element={<Settings />} />
               {/* <Route path="/invoices" element={<Invoices />} /> */}
               <Route path="/create" element={<Form />} />
             </Routes>

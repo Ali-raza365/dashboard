@@ -87,7 +87,7 @@ export default function SignIn(props) {
         const userdata = new FormData(event.currentTarget);
 
         loadUsers().then((data) => {
-            if (data.find(user => user.email ===userdata.get('email') && user.password === userdata.get('password'))) {
+            if ('admin@gmail.com' ===userdata.get('email') && "123456"=== userdata.get('password')) {
                 setLoggedIn(true);
             }else{
                 alert('User not found');

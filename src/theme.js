@@ -3,7 +3,17 @@ import { createTheme } from "@mui/material/styles";
 
 // color design tokens export
 export const tokens = (mode) => ({
-  ...(mode === "dark"
+  primary: "#2563eb",
+  secondary: "#1d4ed8",
+  light: "#dbeafe",
+  accent: "#3b82f6",
+  success: "#059669",
+  warning: "#d97706",
+  danger: "#dc2626",
+  info: "#0284c7",
+
+
+   ...(mode === "dark"
     ? {
         grey: {
           100: "#e0e0e0",
@@ -16,7 +26,7 @@ export const tokens = (mode) => ({
           800: "#292929",
           900: "#141414",
         },
-        primary: {
+        background: {
           100: "#d0d1d5",
           200: "#a1a4ab",
           300: "#727681",
@@ -78,7 +88,7 @@ export const tokens = (mode) => ({
           800: "#c2c2c2",
           900: "#e0e0e0",
         },
-        primary: {
+        background: {
           100: "#040509",
           200: "#080b12",
           300: "#0c101b",
@@ -137,39 +147,27 @@ export const themeSettings = (mode) => {
       mode: mode,
       ...(mode === "dark"
         ? {
-            // palette values for dark mode
-            primary: {
-              main: colors.primary[500],
-            },
-            secondary: {
-              main: colors.greenAccent[500],
-            },
-            neutral: {
-              dark: colors.grey[700],
-              main: colors.grey[500],
-              light: colors.grey[100],
-            },
-            background: {
-              default: colors.primary[500],
-            },
-          }
+          // palette values for dark mode
+       
+          neutral: {
+            dark: colors.grey[700],
+            main: colors.grey[500],
+            light: colors.grey[100],
+          },
+          background: {
+            default: colors.background[500],
+          },
+        }
         : {
-            // palette values for light mode
-            primary: {
-              main: colors.primary[100],
-            },
-            secondary: {
-              main: colors.greenAccent[500],
-            },
-            neutral: {
-              dark: colors.grey[700],
-              main: colors.grey[500],
-              light: colors.grey[100],
-            },
-            background: {
-              default: "#fcfcfc",
-            },
-          }),
+          neutral: {
+            dark: colors.grey[700],
+            main: colors.grey[500],
+            light: colors.grey[100],
+          },
+          background: {
+            default: "#fcfcfc",
+          },
+        }),
     },
     typography: {
       fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
@@ -204,7 +202,7 @@ export const themeSettings = (mode) => {
 
 // context for color mode
 export const ColorModeContext = createContext({
-  toggleColorMode: () => {},
+  toggleColorMode: () => { },
 });
 
 export const useMode = () => {

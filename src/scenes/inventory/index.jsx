@@ -372,7 +372,7 @@ const Inventory = () => {
           "& .MuiDataGrid-root": { border: "none" },
           "& .MuiDataGrid-cell": { borderBottom: "none" },
           "& .MuiDataGrid-columnHeaders": { backgroundColor: colors.secondary[100], borderBottom: "none", color: "#fff", borderRadius: "0" },
-          "& .MuiDataGrid-virtualScroller": { backgroundColor: colors.primary[400] },
+          "& .MuiDataGrid-virtualScroller": { backgroundColor: colors.background[400] },
           "& .MuiDataGrid-footerContainer": { borderTop: "none", borderRadius: "0" },
           "& .MuiCheckbox-root": { color: `${colors.secondary[200]} !important` },
           "& .MuiDataGrid-toolbarContainer .MuiButton-text": { color: `${colors.grey[100]} !important` },
@@ -405,7 +405,7 @@ const Inventory = () => {
         m="20px 0 0 0"
         height="22vh"
         sx={{
-          backgroundColor: colors.primary[400],
+          backgroundColor: colors.background[400],
           overflow: "auto",
           borderRadius: 2,
           p: 2, display: 'flex', flexDirection: 'column', justifyContent: 'space-between'
